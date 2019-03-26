@@ -8,8 +8,8 @@ class ComposerStaticInite97032df4277a927ad9c33465e27d3e1
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
@@ -30,6 +30,8 @@ class ComposerStaticInite97032df4277a927ad9c33465e27d3e1
             'yii\\composer\\' => 13,
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
+            'yidas\\yii\\fontawesome\\' => 22,
+            'yidas\\adminlte\\' => 15,
         ),
         'p' => 
         array (
@@ -115,6 +117,14 @@ class ComposerStaticInite97032df4277a927ad9c33465e27d3e1
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'yidas\\yii\\fontawesome\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yidas/yii2-fontawesome/src',
+        ),
+        'yidas\\adminlte\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yidas/yii2-adminlte/src',
         ),
         'phpDocumentor\\Reflection\\' => 
         array (

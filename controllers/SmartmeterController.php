@@ -9,6 +9,8 @@
 namespace app\controllers;
 
 use app\controllers\base\BaseController;
+use app\models\BuildingTower;
+use app\models\BuildingUnit;
 use Yii;
 
 class SmartmeterController extends BaseController
@@ -25,7 +27,8 @@ class SmartmeterController extends BaseController
     }
 
     public function actionStatus(){
-
+        $unit = BuildingUnit::findOne(['unitid' => 1]);
+        return $this->render('status', ['unit' => $unit]);
     }
 
     public function actionTopup(){
