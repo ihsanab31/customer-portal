@@ -1,81 +1,60 @@
 <?php
-
+use yii\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use app\widgets\Alert;
-use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
+/**
+ * Do not use this code in your template. Remove it. 
+ * Instead, use the code `$this->layout = 'login';` in your controller.
+ * (`yii\web\ErrorAction` also support changing layout by setting `layout` property)
+ */
+$action = Yii::$app->controller->action->id;
+if (in_array($action, ['login', 'error'])) { 
 
-AppAsset::register($this);
+    echo $this->render('login', ['content' => $content]);
+    return;
+}
+
+/**
+ * You could set your AppAsset depended with AdminlteAsset 
+ */
+// \backend\assets\AppAsset::register($this);
+// \app\assets\AppAsset::register($this);
+$adminlteAsset = yidas\adminlte\AdminlteAsset::register($this);
+
+$distPath = $adminlteAsset->baseUrl;
 ?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
+  <meta charset="<?= Yii::$app->charset ?>"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <?= Html::csrfMetaTags() ?>
+  <title><?= Html::encode($this->title) ?></title>
+  <?php $this->head() ?>
 </head>
-<body>
+<body class="hold-transition skin-blue sidebar-mini">
 <?php $this->beginBody() ?>
+<div class="wrapper">
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
+  <?= $this->render('main/header.php', [
+      'directoryAsset' => $distPath
+      ]) ?>
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
-    </div>
+  <?= $this->render('main/aside.php', [
+      'directoryAsset' => $distPath
+      ]) ?>
+
+  <?= $this->render('main/content.php', [
+      'content' => $content, 'directoryAsset' => $distPath
+      ]) ?>
+
 </div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>
+
