@@ -32,16 +32,22 @@ use yii\helpers\Html;
         <!-- /.search form -->
 
         <?php
-        echo Menu::widget([
-            'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
-            'items' => [
-                ['label' => 'Home', 'url' => ['/site/index'], 'icon' => 'home'],
-                ['label' => 'About', 'url' => ['/site/about'], 'icon' => 'info'],
-                ['label' => 'Contact', 'url' => ['/site/contact'], 'icon' => 'phone'],
-                Yii::$app->user->isGuest ?
-                ['label' => 'Login', 'url' => ['/site/login']] : ['label' => 'Logout', 'url' => ['/site/logout']]
-            ],
-        ]);
+        if (Yii::$app->session->get('loggedIn')) {
+            echo Menu::widget([
+                'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
+                'items' => [
+                    ['label' => 'Home', 'url' => ['/dashboard/index'], 'icon' => 'home'],
+                    ['label' => 'Smart Meter', 'url' => '#', 'icon' => 'bolt',
+                        'items' => [
+                            ['label' => 'Status', 'url' => ['smartmeter/status']],
+                            ['label' => 'Top Up', 'url' => ['smartmeter/topup']],
+                            ['label' => 'Daily Usage History', 'url' => ['smartmeter/dailyusagehistory']],
+                        ],
+                        'options' => ['class' => 'treeview']
+                    ],
+                ],
+            ]);
+        }
         ?>
 
     </section>
