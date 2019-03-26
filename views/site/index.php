@@ -23,8 +23,8 @@ $this->title = 'Belleza Lifescape';
             <div class="col-lg-6">
                 <p style=" position: relative; margin-top: 15%; font-family: Yanone Kaffeesatz, sans-serif; font-size: 200%; text-align: center"><i>"Our building management system, make your life easier".</i></p>
                 <p style=" position: relative; margin-top: 1%; margin-left: 7%; font-family: Yanone Kaffeesatz, sans-serif; font-size: 115%; text-align: justify">
-                    With our building management system, you no longer have to spend time on matters related to your apartment.
-                    It's simple, it's fast, it's easy. All you have to do is create your own account, and enjoy the convenience.
+                    With our building management system, you don't have to spend time to look after your apartment.
+                    It's simple, it's fast, it's easy.
                 </p>
             </div>
         </div>

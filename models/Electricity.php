@@ -12,7 +12,7 @@ use Yii;
  * @property int $unitid
  * @property string $modifydate
  *
- * @property MstBuildingunit $unit
+ * @property BuildingUnit $unit
  */
 class Electricity extends \yii\db\ActiveRecord
 {
@@ -34,7 +34,7 @@ class Electricity extends \yii\db\ActiveRecord
             [['saldo', 'unitid'], 'default', 'value' => null],
             [['saldo', 'unitid'], 'integer'],
             [['modifydate'], 'safe'],
-            [['unitid'], 'exist', 'skipOnError' => true, 'targetClass' => MstBuildingunit::className(), 'targetAttribute' => ['unitid' => 'unitid']],
+            [['unitid'], 'exist', 'skipOnError' => true, 'targetClass' => BuildingUnit::className(), 'targetAttribute' => ['unitid' => 'unitid']],
         ];
     }
 
@@ -56,6 +56,6 @@ class Electricity extends \yii\db\ActiveRecord
      */
     public function getUnit()
     {
-        return $this->hasOne(MstBuildingunit::className(), ['unitid' => 'unitid']);
+        return $this->hasOne(BuildingUnit::className(), ['unitid' => 'unitid']);
     }
 }
