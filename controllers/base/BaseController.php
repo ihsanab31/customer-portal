@@ -21,23 +21,23 @@ class BaseController extends Controller
 
     public static function checkIsLogin()
     {
-        return User::isLoggedIn();
+        return Yii::$app->session->get('loggedIn');
     }
 
     public static function requireLogin()
     {
-        if (!User::isLoggedIn()) {
-            self::redirect(['home/index']);
+        if (!Yii::$app->session->get('loggedIn')) {
+            self::redirect(['site/index']);
         }
     }
 
     public static function requireRole($role)
     {
-        if (User::isLoggedIn()) {
+        if (Yii::$app->session->get('loggedIn')) {
             $check = false;
             for ($x = 0; $x < count($role); $x++){
-                for ($i = 0; $i < count(User::getRole()); $i++){
-                    if ($role[$x] == User::getRole()[$i]){
+                for ($i = 0; $i < count(Yii::$app->session->get('rolename')); $i++){
+                    if ($role[$x] == Yii::$app->session->get('rolename')[$i]){
                         $check = true;
                         break;
                     }
@@ -48,7 +48,7 @@ class BaseController extends Controller
                 throw new ForbiddenHttpException('You do not have permission to access this page.');
             }
         } else {
-            self::redirect(['home/index']);
+            self::redirect(['site/index']);
         }
     }
 

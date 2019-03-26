@@ -59,10 +59,21 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+        $username = Yii::$app->request->post()['LoginForm']['username'];
+        $password = Yii::$app->request->post()['LoginForm']['password'];
+        $userid = AppUser::findOne(['username' => $username])->userid;
+        if (!empty($userid)) {
+            $userdata = AppUser::findOne(['userid' => $userid, 'password' => md5($password)]);
+            if (!empty($userdata)) {
+                return true;
+            } else {
+                Yii::$app->session->setFlash('danger', 'Incorrect Password');
+                return false;
+            }
+        } else {
+            Yii::$app->session->setFlash('danger', 'Username not found');
+            return false;
         }
-        return false;
     }
 
     /**
@@ -78,4 +89,74 @@ class LoginForm extends Model
 
         return $this->_user;
     }
+
+    private function getSingleAppUser($username, $password)
+    {
+        $model = AppUser::findOne(['username' => $username, 'password' => md5($password)]);
+        return $model;
+    }
+
+    private function getSingleAppUserSchema($userid)
+    {
+        $model = AppUserSchema::findOne(['userid' => $userid]);
+        return $model;
+    }
+
+    private function getSingleSite($schemaname)
+    {
+        $model = MasterSite::findOne(['schemaname' => $schemaname]);
+        return $model;
+    }
+
+    private function getUserRoleNames($userid)
+    {
+        $roleid = AppUserRole::find()->select('roleid')->where(['userid' => $userid])->all();
+        if (!empty($roleid)) {
+            $rolename = AppRole::find()->where(['in', 'roleid', $roleid]);
+            if (!empty($rolename)) {
+                $model = $rolename->all();
+                return $model;
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public function storeUserSession($data)
+    {
+        $username = $data['LoginForm']['username'];
+        $password = $data['LoginForm']['password'];
+        $user = self::getSingleAppUser($username, $password);
+        $rolenames = self::getUserRoleNames($user->userid);
+
+        Yii::$app->session->set('userid', $user->userid);
+        Yii::$app->session->set('username', $user->username);
+        Yii::$app->session->set('status', $user->status);
+        Yii::$app->session->set('nama', $user->nama);
+        if (!empty($rolenames)) {
+            $role = [];
+            foreach ($rolenames as $row) {
+                $role[] = $row->nama;
+            }
+            Yii::$app->session->set('rolename', $role);
+            if ($user->jenis !== 'SYS') {
+                $schema = self::getSingleAppUserSchema($user->userid);
+                $site = self::getSingleSite($schema->schemaname);
+                if (!empty($schema) && !empty($site)) {
+                    Yii::$app->session->set('schemaname', $schema->schemaname);
+                    Yii::$app->session->set('siteid', $site->siteid);
+                    Yii::$app->session->set('loggedIn', true);
+                } else {
+                    Yii::$app->session->destroy();
+                }
+            } else {
+                Yii::$app->session->destroy();
+            }
+        } else {
+            Yii::$app->session->destroy();
+        }
+    }
+
 }

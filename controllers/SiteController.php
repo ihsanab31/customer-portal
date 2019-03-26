@@ -25,16 +25,15 @@ class SiteController extends Controller
                     [
                         'actions' => ['logout'],
                         'allow' => true,
-                        'roles' => ['@'],
                     ],
                 ],
             ],
-            /*'verbs' => [
+            'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
                 ],
-            ],*/
+            ],
         ];
     }
 
@@ -61,6 +60,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'public';
         return $this->render('index');
     }
 
@@ -71,13 +71,16 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+        if (Yii::$app->session->get('loggedIn')) {
+            return $this->redirect(['site/index']);
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->login()){
+                $model->storeUserSession(Yii::$app->request->post());
+                return $this->redirect(['dashboard/index']);
+            }
         }
 
         $model->password = '';
@@ -93,9 +96,8 @@ class SiteController extends Controller
      */
     public function actionLogout()
     {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
+        $_SESSION = array();
+        return $this->redirect(['site/index']);
     }
 
     /**
@@ -125,4 +127,5 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
 }
