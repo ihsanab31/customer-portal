@@ -33,7 +33,7 @@ use app\widgets\Menu;
                         ['label' => 'Home', 'url' => ['/dashboard/index'], 'icon' => 'home'],
                         ['label' => 'Smart Meter', 'url' => '#', 'icon' => 'bolt',
                             'items' => [
-                                ['label' => 'Status', 'url' => ['smartmeter/status']],
+                                ['label' => 'Status', 'url' => ['smartmeter/index']],
                                 ['label' => 'Top Up', 'url' => ['smartmeter/topup']],
                                 ['label' => 'Report', 'url' => ['smartmeter/report']],
                             ],
