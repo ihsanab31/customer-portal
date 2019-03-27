@@ -44,10 +44,10 @@ class SmartmeterController extends BaseController
     {
         if (Yii::$app->request->isAjax) {
             $unitid = Yii::$app->request->post()['unitid'];
-            $unit = BuildingUnit::findOne(['isactive' => 1, 'unitid' => $unitid]);
-            $unitname = $unit->nama;
-            $floorname = $unit->floor->nama;
-            $towername = $unit->tower->nama;
+            $unit = BuildingUnit::find()->where(['unitid' => $unitid])->all();
+            $unitname = $unit[0]->nama;
+            $floorname = $unit[0]->floor->nama;
+            $towername = $unit[0]->tower->nama;
 
             $result['total'] = count($unit);
             if ($result['total'] > 0) {
