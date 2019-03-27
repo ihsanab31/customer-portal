@@ -30,7 +30,7 @@ $this->title = 'Status';
                         <p class="pull-right">22 V</p>
                     </li>
                     <li class="list-group-item">
-                        <b>Balance</b> <label class="label label-primary pull-right">144 kWh</label>
+                        <b>Balance</b> <label class="label label-success pull-right" style="font-size: medium">144 kWh</label>
                     </li>
                 </ul>
                 <a href="<?= Url::to(['smartmeter/topup']) ?>" class="btn btn-block btn-primary">
