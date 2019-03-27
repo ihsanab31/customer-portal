@@ -10,7 +10,6 @@ $this->title = 'Login';
 ?>
 
 <div class="col-sm-4" style="position: absolute; margin: auto; top: 0; right: 0; bottom: 0; left: 0; height: 54%; padding-top: 0.5%; background-color: rgba(255,255,255,0.0);">
-
     <div style="width: 100%">
         <?= Alert::widget() ?>
     </div>
