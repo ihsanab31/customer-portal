@@ -32,9 +32,9 @@ use app\widgets\Menu;
                         ['label' => 'Home', 'url' => ['/dashboard/index'], 'icon' => 'home'],
                         ['label' => 'Smart Meter', 'url' => '#', 'icon' => 'bolt',
                             'items' => [
-                                ['label' => 'Status', 'url' => ['smartmeter/index']],
-                                ['label' => 'Top Up', 'url' => ['smartmeter/topup']],
-                                ['label' => 'Report', 'url' => ['smartmeter/report']],
+                                ['label' => 'Status', 'url' => ['smartmeter/index'], 'icon' => 'flash'],
+                                ['label' => 'Top Up', 'url' => ['smartmeter/topup'], 'icon' => 'money'],
+                                ['label' => 'Report', 'url' => ['smartmeter/report'], 'icon' => 'file-text'],
                             ],
                             'options' => ['class' => 'treeview']
                         ],
