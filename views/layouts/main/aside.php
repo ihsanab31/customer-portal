@@ -18,21 +18,45 @@ use app\widgets\Menu;
             </div>
         </div>
         <?php
+        $found = false;
+        for ($i = 0; $i < count(Yii::$app->session->get('rolename')); $i++){
+            if (Yii::$app->session->get('rolename')[$i] == Yii::$app->params['ROLE']['PEMILIK']){
+                $found = true;
+            }
+        }
+
         if (Yii::$app->session->get('loggedIn')) {
-            echo Menu::widget([
-                'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
-                'items' => [
-                    ['label' => 'Home', 'url' => ['/dashboard/index'], 'icon' => 'home'],
-                    ['label' => 'Smart Meter', 'url' => '#', 'icon' => 'bolt',
-                        'items' => [
-                            ['label' => 'Status', 'url' => ['smartmeter/status']],
-                            ['label' => 'Top Up', 'url' => ['smartmeter/topup']],
-                            ['label' => 'Daily Usage History', 'url' => ['smartmeter/dailyusagehistory']],
+            if ($found){
+                echo Menu::widget([
+                    'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
+                    'items' => [
+                        ['label' => 'Home', 'url' => ['/dashboard/index'], 'icon' => 'home'],
+                        ['label' => 'Smart Meter', 'url' => '#', 'icon' => 'bolt',
+                            'items' => [
+                                ['label' => 'Status', 'url' => ['smartmeter/status']],
+                                ['label' => 'Top Up', 'url' => ['smartmeter/topup']],
+                                ['label' => 'Report', 'url' => ['smartmeter/report']],
+                            ],
+                            'options' => ['class' => 'treeview']
                         ],
-                        'options' => ['class' => 'treeview']
                     ],
-                ],
-            ]);
+                ]);
+            } else {
+                echo Menu::widget([
+                    'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
+                    'items' => [
+                        ['label' => 'Home', 'url' => ['/dashboard/index'], 'icon' => 'home'],
+                        ['label' => 'Smart Meter', 'url' => '#', 'icon' => 'bolt',
+                            'items' => [
+                                ['label' => 'Status', 'url' => ['smartmeter/status']],
+                                ['label' => 'Top Up', 'url' => ['smartmeter/topup']],
+                            ],
+                            'options' => ['class' => 'treeview']
+                        ],
+                    ],
+                ]);
+            }
+
         }
         ?>
 

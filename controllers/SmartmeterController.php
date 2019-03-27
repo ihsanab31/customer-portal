@@ -9,8 +9,8 @@
 namespace app\controllers;
 
 use app\controllers\base\BaseController;
-use app\models\BuildingFloor;
 use app\models\BuildingUnit;
+use app\models\Electricity;
 use Yii;
 use yii\web\ForbiddenHttpException;
 
@@ -19,7 +19,7 @@ class SmartmeterController extends BaseController
 
     public function beforeAction($action)
     {
-        BaseController::requireRole([Yii::$app->params['ROLE']['CUST']]);
+        BaseController::requireRole([Yii::$app->params['ROLE']['PEMILIK'], Yii::$app->params['ROLE']['PENYEWA']]);
         return parent::beforeAction($action);
     }
 
@@ -36,7 +36,7 @@ class SmartmeterController extends BaseController
 
     }
 
-    public function actionDailyusagehistory(){
+    public function actionReport(){
 
     }
 
@@ -54,6 +54,12 @@ class SmartmeterController extends BaseController
                 $result['unitname'] = $unitname;
                 $result['floorname'] = $floorname;
                 $result['towername'] = $towername;
+                $electricity = Electricity::findOne(['unitid' => $unit[0]->unitid]);
+                if (count($electricity) > 0){
+                    $result['remaining'] = $electricity->saldo;
+                } else {
+                    $result['remaining'] = 0;
+                }
             }
             return json_encode($result);
         } else {

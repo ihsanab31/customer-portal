@@ -21,7 +21,7 @@ class Electricity extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'mst_electricity';
+        return Yii::$app->session->get('schemaname').'.mst_electricity';
     }
 
     /**

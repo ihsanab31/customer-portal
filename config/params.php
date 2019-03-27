@@ -5,5 +5,7 @@ return [
 
     'ROLE' => [
         'CUST' => 'CUSTOMER',
+        'PEMILIK' => 'PEMILIK UNIT',
+        'PENYEWA' => 'PENYEWA'
     ]
 ];

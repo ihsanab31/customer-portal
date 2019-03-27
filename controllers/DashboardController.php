@@ -8,14 +8,14 @@
 
 namespace app\controllers;
 
-
+use Yii;
 use app\controllers\base\BaseController;
 
 class DashboardController extends BaseController
 {
     public function beforeAction($action)
     {
-        BaseController::requireRole([\Yii::$app->params['ROLE']['CUST']]);
+        BaseController::requireRole([Yii::$app->params['ROLE']['PEMILIK'], Yii::$app->params['ROLE']['PENYEWA']]);
         return parent::beforeAction($action);
     }
 
