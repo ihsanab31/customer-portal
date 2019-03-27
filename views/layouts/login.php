@@ -1,30 +1,47 @@
 <?php
-use backend\assets\AppAsset;
+
+use app\widgets\Alert;
 use yii\helpers\Html;
-/* @var $this \yii\web\View */
-/* @var $content string */
-// You could register AppAsset depended with AdminlteAsset instead
-yidas\adminlte\AdminlteAsset::register($this);
-// iCheck
-yidas\adminlte\plugins\iCheckAsset::register($this);
+use yii\bootstrap\NavBar;
+use app\assets\AppAsset;
+
+AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
-<!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
-<head>
-    <meta charset="<?= Yii::$app->charset ?>"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
-</head>
-<body class="hold-transition login-page">
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="<?= Yii::$app->charset ?>">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <?php $this->registerCsrfMetaTags() ?>
+        <title><?= Html::encode($this->title) ?></title>
+        <?php $this->head() ?>
+        <link href='https://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet'>
+        <style>
+            .bg-image {
+                background-image: url(<?php echo Yii::$app->request->hostInfo.'/img/slide-2.jpg'?>);
+                filter: blur(3px);
+                -webkit-filter: blur(3px);
+                height: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
 
-<?php $this->beginBody() ?>
+            body{
+                font-family: 'Amaranth', serif;
+            }
+        </style>
+    </head>
 
-    <?= $content ?>
-
-<?php $this->endBody() ?>
-</body>
-</html>
+    <body>
+    <?php $this->beginBody() ?>
+    <div class="bg-image"></div>
+    <div class="container">
+        <?=$content?>
+    </div>
+    <?php $this->endBody() ?>
+    </body>
+    </html>
 <?php $this->endPage() ?>

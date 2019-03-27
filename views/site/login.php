@@ -1,73 +1,58 @@
 <?php
 
+use app\widgets\Alert;
+use app\widgets\Button;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \common\models\LoginForm */
-$this->title = 'Sign In';
-$fieldOptions1 = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-envelope form-control-feedback'></span>"
-];
-$fieldOptions2 = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
-];
+$this->title = 'Login';
+
 ?>
 
-    <div class="login-box">
-        <div class="login-logo">
-            <a href="#"><b>Admin</b>LTE</a>
-        </div>
-        <!-- /.login-logo -->
-        <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+<div class="col-sm-4" style="position: absolute; margin: auto; top: 0; right: 0; bottom: 0; left: 0; height: 54%; padding-top: 0.5%; background-color: rgba(255,255,255,0.0);">
 
-            <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
+    <div style="width: 100%">
+        <?= Alert::widget() ?>
+    </div>
+    <div class="panel"
+         style="position: absolute; margin: auto; top: 0; right: 0; bottom: 0; left: 0; width: 94%; height: 70%; padding-top: 0.5%; background-color: rgba(255,255,255,0.8);">
 
-            <?= $form
-                ->field($model, 'username', $fieldOptions1)
-                ->label(false)
-                ->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
+        <div class="panel-body">
+            <?php echo Html::label('Belleza Lifescape', null, ['style' => 'font-size: 22px; text-align: justify;']); ?>
+            <?php $form = ActiveForm::begin([
+                'id' => 'login-form',
+                'action' => ['site/login']
+            ]); ?>
+            <div class="form-group">
+                <?= $form->field($model, 'username', ['template' => '
+                        <div  style="margin-top:5px;">
+                            <div class="input-group col-sm-12">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </span>
+                                {input}
+                            </div>{error}{hint}
+                        </div>'])->textInput(['autofocus' => true])
+                    ->input('text', ['placeholder' => 'Username', 'autocomplete' => 'off']) ?>
+            </div>
+            <div class="form-group">
+                <?= $form->field($model, 'password', ['template' => '
+                        <div style="margin-top:15px;">
+                            <div class="input-group col-sm-12">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-lock"></span>
+                                </span>
+                                {input}
+                            </div>{error}{hint}
+                        </div>'])->passwordInput()
+                    ->input('password', ['placeholder' => 'Password']) ?>
+            </div>
+            <div class="form-group">
 
-            <?= $form
-                ->field($model, 'password', $fieldOptions2)
-                ->label(false)
-                ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
-
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox"> Remember Me
-                        </label>
-                    </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <?= Html::submitButton('Sign in', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
-                </div>
-                <!-- /.col -->
+                <?= Button::submit('login') ?>
             </div>
 
             <?php ActiveForm::end(); ?>
-
-        </div>
-        <!-- /.login-box-body -->
-    </div><!-- /.login-box -->
-
-<?php
-$this->registerJs("
-
-	$(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' // optional
-    });
-  });
-
-", $this::POS_END);
-?>
+            </div>
+    </div>
+</div>
