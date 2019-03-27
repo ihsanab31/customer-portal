@@ -79,6 +79,16 @@ class ElectricPrice extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getUnit()
+    {
+        return $this->hasOne(Buildingunit::className(), ['unitid' => 'unitid']);
+    }
+
+    public function getPayment()
+    {
+        return $this->hasOne(PaymentMethod::className(), ['paymentid' => 'paymentid']);
+    }
+
     public function getEntryuser()
     {
         return $this->hasOne(AppUser::className(), ['userid' => 'entryuserid']);

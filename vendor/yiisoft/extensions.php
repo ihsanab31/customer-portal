@@ -48,4 +48,22 @@ return array (
       '@yii/faker' => $vendorDir . '/yiisoft/yii2-faker',
     ),
   ),
+  'yidas/yii2-fontawesome' => 
+  array (
+    'name' => 'yidas/yii2-fontawesome',
+    'version' => '2.0.0.0',
+    'alias' => 
+    array (
+      '@yidas/yii/fontawesome' => $vendorDir . '/yidas/yii2-fontawesome/src',
+    ),
+  ),
+  'yidas/yii2-adminlte' => 
+  array (
+    'name' => 'yidas/yii2-adminlte',
+    'version' => '2.1.2.0',
+    'alias' => 
+    array (
+      '@yidas/adminlte' => $vendorDir . '/yidas/yii2-adminlte/src',
+    ),
+  ),
 );
