@@ -29,7 +29,6 @@ AppAsset::register($this);
                 background-repeat: no-repeat;
                 background-size: cover;
             }
-
             body{
                 font-family: 'Amaranth', serif;
             }
