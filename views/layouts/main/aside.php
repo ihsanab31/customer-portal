@@ -34,10 +34,10 @@ use app\widgets\Menu;
                             'items' => [
                                 ['label' => 'Status', 'url' => ['smartmeter/index'], 'icon' => 'flash'],
                                 ['label' => 'Top Up', 'url' => ['smartmeter/topup'], 'icon' => 'money'],
-                                ['label' => 'Report', 'url' => ['smartmeter/report'], 'icon' => 'file-text'],
                             ],
                             'options' => ['class' => 'treeview']
                         ],
+                        ['label' => 'Laporan BM', 'url' => ['smartmeter/report'], 'icon' => 'file-text'],
                     ],
                 ]);
             } else {

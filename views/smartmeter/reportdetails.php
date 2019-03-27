@@ -15,7 +15,6 @@ $this->title = 'Report Details'
                 </div>
             </div>
             <div class="box-body">
-                <h1>Laporan Bulanan BM</h1>
                 <table>
                     <tbody>
                     <tr>
