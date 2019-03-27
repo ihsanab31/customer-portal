@@ -39,7 +39,7 @@ class SmartmeterController extends BaseController
         // get how much token he/she want
         $price = new ElectricPrice(); //example model
 
-        // select payment method, either using ovo, dana, etc
+        // select payment method, either using ovo, dana, gopay
 //        $payment = new PaymentMethod();
 
         if ($topup->load(Yii::$app->request->post())){
