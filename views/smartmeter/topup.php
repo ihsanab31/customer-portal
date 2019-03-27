@@ -3,6 +3,7 @@
 use app\widgets\Button;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 $this->title = 'Top Up Smart Meter';
 
@@ -82,7 +83,7 @@ $this->title = 'Top Up Smart Meter';
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-block btn-primary">Beli</button>
+                    <a href="<?= Url::to(['smartmeter/index']) ?>" class="btn btn-block btn-primary">Beli</a>
                 </div>
             </div>
         </div>
