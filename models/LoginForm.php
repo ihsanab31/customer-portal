@@ -61,9 +61,9 @@ class LoginForm extends Model
     {
         $username = Yii::$app->request->post()['LoginForm']['username'];
         $password = Yii::$app->request->post()['LoginForm']['password'];
-        $userid = AppUser::findOne(['username' => $username])->userid;
-        if (!empty($userid)) {
-            $userdata = AppUser::findOne(['userid' => $userid, 'password' => md5($password)]);
+        $user = AppUser::findOne(['username' => $username]);
+        if (!empty($user)) {
+            $userdata = AppUser::findOne(['userid' => $user->userid, 'password' => md5($password)]);
             if (!empty($userdata)) {
                 return true;
             } else {
