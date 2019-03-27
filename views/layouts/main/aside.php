@@ -18,22 +18,26 @@ use app\widgets\Menu;
             </div>
         </div>
         <?php
-        $found = false;
-        for ($i = 0; $i < count(Yii::$app->session->get('rolename')); $i++){
-            if (Yii::$app->session->get('rolename')[$i] == Yii::$app->params['ROLE']['PEMILIK']){
-                $found = true;
-            }
-        }
-
         if (Yii::$app->session->get('loggedIn')) {
+            $found = false;
+            for ($i = 0; $i < count(Yii::$app->session->get('rolename')); $i++){
+                if (Yii::$app->session->get('rolename')[$i] == Yii::$app->params['ROLE']['PEMILIK']){
+                    $found = true;
+                }
+            }
             if ($found){
                 echo Menu::widget([
                     'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
                     'items' => [
                         ['label' => 'Home', 'url' => ['/dashboard/index'], 'icon' => 'home'],
-                        ['label' => 'Stand Meter', 'url' => ['smartmeter/status'], 'icon' => 'bolt'],
-                        ['label' => 'Top Up', 'url' => ['smartmeter/topup'], 'icon' => 'money'],
-                        ['label' => 'Report', 'url' => ['smartmeter/report'], 'icon' => 'book'],
+                        ['label' => 'Smart Meter', 'url' => '#', 'icon' => 'bolt',
+                            'items' => [
+                                ['label' => 'Status', 'url' => ['smartmeter/index'], 'icon' => 'flash'],
+                                ['label' => 'Top Up', 'url' => ['smartmeter/topup'], 'icon' => 'money'],
+                                ['label' => 'Report', 'url' => ['smartmeter/report'], 'icon' => 'file-text'],
+                            ],
+                            'options' => ['class' => 'treeview']
+                        ],
                     ],
                 ]);
             } else {
@@ -41,8 +45,13 @@ use app\widgets\Menu;
                     'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
                     'items' => [
                         ['label' => 'Home', 'url' => ['/dashboard/index'], 'icon' => 'home'],
-                        ['label' => 'Stand Meter', 'url' => ['smartmeter/status'], 'icon' => 'bolt'],
-                        ['label' => 'Top Up', 'url' => ['smartmeter/topup'], 'icon' => 'money'],
+                        ['label' => 'Smart Meter', 'url' => '#', 'icon' => 'bolt',
+                            'items' => [
+                                ['label' => 'Status', 'url' => ['smartmeter/index']],
+                                ['label' => 'Top Up', 'url' => ['smartmeter/topup']],
+                            ],
+                            'options' => ['class' => 'treeview']
+                        ],
                     ],
                 ]);
             }
