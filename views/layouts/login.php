@@ -24,6 +24,7 @@ AppAsset::register($this);
                 filter: blur(3px);
                 -webkit-filter: blur(3px);
                 height: 100%;
+                width: 100%;
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
@@ -37,9 +38,12 @@ AppAsset::register($this);
 
     <body>
     <?php $this->beginBody() ?>
+
     <div class="bg-image"></div>
     <div class="container">
-        <?=$content?>
+        <center>
+            <?=$content?>
+        </center>
     </div>
     <?php $this->endBody() ?>
     </body>

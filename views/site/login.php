@@ -9,13 +9,13 @@ $this->title = 'Login';
 
 ?>
 
-<div class="col-sm-4" style="position: absolute; margin: auto; top: 0; right: 0; bottom: 0; left: 0; height: 54%; padding-top: 0.5%; background-color: rgba(255,255,255,0.0);">
-    <div style="width: 100%">
-        <?= Alert::widget() ?>
-    </div>
-    <div class="panel"
-         style="position: absolute; margin: auto; top: 0; right: 0; bottom: 0; left: 0; width: 94%; height: 70%; padding-top: 0.5%; background-color: rgba(255,255,255,0.8);">
+<div class="col-sm-3"
+     style="position: absolute; margin: auto; top: 0; right: 0; bottom: 0; left: 0; height:75%; padding: 0.4%; background-color: rgba(255,255,255,0);">
 
+    <?= Alert::widget() ?>
+    <div class="panel"
+         style="position: absolute; margin: auto; top: 0; right: 0; bottom: 0; left: 0; height: 75%; padding-top: 0.5%; background-color: rgba(255,255,255,0.8);">
+        <?= Html::img('/img/logo.png', ['style' => 'height : 110px; width : 110px; padding: 2%', 'class'=>'']); ?>
         <div class="panel-body">
             <?php echo Html::label('Belleza Lifescape', null, ['style' => 'font-size: 22px; text-align: justify;']); ?>
             <?php $form = ActiveForm::begin([
@@ -52,6 +52,6 @@ $this->title = 'Login';
             </div>
 
             <?php ActiveForm::end(); ?>
-            </div>
+        </div>
     </div>
 </div>
