@@ -73,9 +73,9 @@ class SmartmeterController extends BaseController
         return $this->render('report');
     }
 
-    public function actionReportdetails(){
+    public function actionReportdetails($bulan, $tahun){
         BaseController::requireRole([Yii::$app->params['ROLE']['PEMILIK']]);
-        return $this->render('download');
+        return $this->render('reportdetails', ['bulan' => $bulan, 'tahun' => $tahun]);
     }
 
 }
