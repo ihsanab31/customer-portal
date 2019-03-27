@@ -9,9 +9,10 @@
 namespace app\controllers;
 
 use app\controllers\base\BaseController;
-use app\models\BuildingTower;
+use app\models\BuildingFloor;
 use app\models\BuildingUnit;
 use Yii;
+use yii\web\ForbiddenHttpException;
 
 class SmartmeterController extends BaseController
 {
@@ -37,6 +38,27 @@ class SmartmeterController extends BaseController
 
     public function actionDailyusagehistory(){
 
+    }
+
+    public function actionAjax()
+    {
+        if (Yii::$app->request->isAjax) {
+            $unitid = Yii::$app->request->post()['unitid'];
+            $unit = BuildingUnit::findOne(['isactive' => 1, 'unitid' => $unitid]);
+            $unitname = $unit->nama;
+            $floorname = $unit->floor->nama;
+            $towername = $unit->tower->nama;
+
+            $result['total'] = count($unit);
+            if ($result['total'] > 0) {
+                $result['unitname'] = $unitname;
+                $result['floorname'] = $floorname;
+                $result['towername'] = $towername;
+            }
+            return json_encode($result);
+        } else {
+            throw new ForbiddenHttpException('You do not have permission to access this page.');
+        }
     }
 
 }
