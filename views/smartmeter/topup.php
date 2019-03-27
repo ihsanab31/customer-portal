@@ -52,11 +52,11 @@ $this->title = 'Top Up Smart Meter';
                     <div class="form-group">
                         <?= Html::label('Nominal Token','harga') ?>
                         <div class="clearfix"></div>
-                        <?= Html::buttonInput('IDR 100,000', ['value' => 64, 'class' => 'col-xs-3 btn1 btn-success']) ?>
-                        <?= Html::buttonInput('IDR 200,000', ['value' => 128, 'class' => 'col-xs-3 btn1 btn-success']) ?>
-                        <?= Html::buttonInput('IDR 300,000', ['value' => 192, 'class' => 'col-xs-3 btn1 btn-success']) ?>
-                        <?= Html::buttonInput('IDR 500,000', ['value' => 320, 'class' => 'col-xs-3 btn1 btn-success']) ?>
-                        <?= Html::buttonInput('IDR 1,000,000', ['value' => 640, 'class' => 'col-xs-3 btn1 btn-success']) ?>
+                        <?= Html::buttonInput('IDR 100,000', ['value' => 64, 'class' => 'col-xs-5 btn1 btn-success']) ?>
+                        <?= Html::buttonInput('IDR 200,000', ['value' => 128, 'class' => 'col-xs-5 btn1 btn-success']) ?>
+                        <?= Html::buttonInput('IDR 300,000', ['value' => 192, 'class' => 'col-xs-5 btn1 btn-success']) ?>
+                        <?= Html::buttonInput('IDR 500,000', ['value' => 320, 'class' => 'col-xs-5 btn1 btn-success']) ?>
+                        <?= Html::buttonInput('IDR 1,000,000', ['value' => 640, 'class' => 'col-xs-5 btn1 btn-success']) ?>
                     </div>
                 </div>
                 <div class="clearfix"></div>
