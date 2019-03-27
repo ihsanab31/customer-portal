@@ -31,7 +31,9 @@ class BuildingFloor extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return Yii::$app->session->get('schemaname').'.mst_buildingfloor';
+        return Yii::$app->session->get('loggedIn') ?
+            Yii::$app->session->get('schemaname') . '.mst_buildingfloor' :
+            Yii::$app->params['schema'] . '.mst_buildingfloor';
     }
 
     /**

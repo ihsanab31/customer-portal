@@ -7,5 +7,7 @@ return [
         'CUST' => 'CUSTOMER',
         'PEMILIK' => 'PEMILIK UNIT',
         'PENYEWA' => 'PENYEWA'
-    ]
+    ],
+
+    'schema' => 'belleza'
 ];

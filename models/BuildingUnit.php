@@ -36,7 +36,9 @@ class BuildingUnit extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return Yii::$app->session->get('schemaname').'.mst_buildingunit';
+        return Yii::$app->session->get('loggedIn') ?
+            Yii::$app->session->get('schemaname') . '.mst_buildingunit' :
+            Yii::$app->params['schema'] . '.mst_buildingunit';
     }
 
     /**
