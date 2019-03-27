@@ -36,7 +36,7 @@ class SmartmeterController extends BaseController
         return $this->render('report');
     }
 
-    public function actionDownload(){
+    public function actionReportdetails(){
         BaseController::requireRole([Yii::$app->params['ROLE']['PEMILIK']]);
         return $this->render('download');
     }
