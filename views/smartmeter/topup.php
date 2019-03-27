@@ -42,6 +42,7 @@ $this->title = 'Top Up Smart Meter';
         <div class="col-md-6">
             <label>Harga</label>
             <br/>
+            <!-- Button Ongoing -->
             <?= Html::buttonInput('IDR 100,000', ['value' => 64, 'class' => 'btn1 btn-success']) ?>
 
             <?= Html::buttonInput('IDR 200,000', ['value' => 128, 'class' => 'btn1 btn-success']) ?>
