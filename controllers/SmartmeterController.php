@@ -33,7 +33,7 @@ class SmartmeterController extends BaseController
 
     public function actionReport(){
         BaseController::requireRole([Yii::$app->params['ROLE']['PEMILIK']]);
-
+        return $this->render('report');
     }
 
 }
