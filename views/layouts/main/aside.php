@@ -18,14 +18,13 @@ use app\widgets\Menu;
             </div>
         </div>
         <?php
-        $found = false;
-        for ($i = 0; $i < count(Yii::$app->session->get('rolename')); $i++){
-            if (Yii::$app->session->get('rolename')[$i] == Yii::$app->params['ROLE']['PEMILIK']){
-                $found = true;
-            }
-        }
-
         if (Yii::$app->session->get('loggedIn')) {
+            $found = false;
+            for ($i = 0; $i < count(Yii::$app->session->get('rolename')); $i++){
+                if (Yii::$app->session->get('rolename')[$i] == Yii::$app->params['ROLE']['PEMILIK']){
+                    $found = true;
+                }
+            }
             if ($found){
                 echo Menu::widget([
                     'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
