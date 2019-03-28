@@ -65,7 +65,12 @@ class LoginForm extends Model
         if (!empty($user)) {
             $userdata = AppUser::findOne(['userid' => $user->userid, 'password' => md5($password)]);
             if (!empty($userdata)) {
-                return true;
+                if ($userdata->jenis === 'CUS') {
+                    return true;
+                } else {
+                    Yii::$app->session->setFlash('danger', 'You are not allowed to access this site');
+                    return false;
+                }
             } else {
                 Yii::$app->session->setFlash('danger', 'Incorrect Password');
                 return false;
